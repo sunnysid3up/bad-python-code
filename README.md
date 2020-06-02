@@ -74,6 +74,90 @@ a = 1
 b = 2
 c = 3
 
+
 # Better
 a, b, c, = 1, 2, 3
+```
+
+#### Unpacking
+```python
+x = [10, 20, 30]
+
+a = x[0]
+b = x[1]
+c = x[2]
+
+
+# Better
+a, b, c, = x
+```
+
+#### If/Else Loop Without a Break
+```python
+def func_x(breeds, pet):
+    for breed in breeds:
+        if breed == pet:
+            print("I have a dog.")
+    else:
+        print("I don't have a dog")
+
+
+func_x(["chihuahua", "jack russell"], "chihuahua")
+
+# => I have a dog.
+# => I don't have a dog
+
+
+# Better
+def func_y(breeds, pet):
+    for breed in breeds:
+        if breed == pet:
+            print("I have a dog.")
+            break
+    else:
+        print("I don't have a dog")
+
+
+func_x(["chihuahua", "jack russell"], "chihuahua")
+# => I have a dog.
+```
+
+#### Wildcard Imports
+```python
+from typing import *
+
+
+# Better
+from typing import Union, Optional, OrderedDict
+```
+
+#### Context Manager
+```python
+f = open("file.text", "r")
+try:
+    content = f.read()
+finally:
+    f.close()
+
+
+# Better
+with open("file.text", "r") as f:
+    content = f.read()
+```
+
+# Returning More than One Variable Type from Function
+```python
+def func_x(param):
+    if param:
+        return 200, {"message": f"{param}"}
+    else:
+        return 400, "A useful error message"
+
+
+# Better
+def func_y(param):
+    if param:
+        return 200, {"message": f"{param}"}
+    else:
+        return 400, {"message": "A useful error message"}    
 ```
