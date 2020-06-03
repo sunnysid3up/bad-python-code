@@ -145,7 +145,7 @@ with open("file.text", "r") as f:
     content = f.read()
 ```
 
-# Returning More than One Variable Type from Function
+#### Returning More than One Variable Type from Function
 ```python
 def func_x(param):
     if param:
@@ -160,4 +160,70 @@ def func_y(param):
         return 200, {"message": f"{param}"}
     else:
         return 400, {"message": "A useful error message"}    
+```
+
+#### Comparing None to a Variable
+```python
+if something == None:
+    print("Something is None!")
+
+
+# Better
+if something is None:
+    print("Something is None!")
+```
+
+#### Comparing Boolean to a Variable
+```python
+condition = True
+if conditon == True:
+    print("'Tis true!")
+
+
+# Better
+if condition:
+    print("'This true!")
+```
+
+#### Comparing types
+```python
+doggos = ["tamago", "charlie"]
+if type(doggos) is list:
+    print("'doggos' is a list")
+
+
+# Better
+if isinstance(doggos, list):
+    print("'doggos' is a list")
+```
+
+#### Using Index to Return Tuple Values
+```python
+def get_lego():
+    return "21103", "Back to the Future Time Machine", "401", "2013"
+
+my_lego = get_lego()
+print(my_lego[0], my_lego[1], my_lego[2], my_lego[3])
+
+
+# Better
+from collections import namedtuple
+
+def get_lego():
+    lego = namedtuple("lego", ["serial_number", "name", "num_of_pieces", "release_year"])
+    return lego("21103", "Back to the Future Time Machine", "401", "2013")
+
+my_lego = get_lego()
+print(my_lego.serial_number, my_lego.name, my_lego.num_of_pieces, my_lego.release_year)
+```
+
+#### Overusing map()
+```python
+numbers = [10, 20, 30]
+double_numbers = list(map(lambda num: num * 2, numbers))
+
+
+# Better
+numbers = [10, 20, 30]
+double_numbers = [num * 2 for num in numbers]
 ```
