@@ -227,3 +227,45 @@ double_numbers = list(map(lambda num: num * 2, numbers))
 numbers = [10, 20, 30]
 double_numbers = [num * 2 for num in numbers]
 ```
+
+#### Using Wildcard Imports
+```python
+from elastic_appsearch import *
+
+
+# Better
+from elastic_appsearch import Client
+```
+
+#### Asking for Permission
+**EAFP**
+- "Easier to ask for forgiveness than permission. This common Python coding style assumes the existence of valid keys or attributes and catches exceptions if the assumption proves false. This clean and fast style is characterized by the presence of many try and except statements. The technique contrasts with the LBYL style common to many other languages such as C."
+- [Python Glossary](https://docs.python.org/3/glossary.html)
+
+```python
+if "key" in dictionary:
+    item = dictionary["key"]
+else:
+    item = ""
+
+
+# Better
+try:
+    item = dictionary["key"]
+except KeyError:
+    item = ""
+```
+
+#### Not Using get() in a Dict to Set a Default Value
+```python
+try:
+    item = dictionary["key"]
+except KeyError:
+    item = ""
+
+
+# Better
+item = dictionary.get("key", "")
+```
+
+    
