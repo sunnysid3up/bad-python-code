@@ -268,4 +268,32 @@ except KeyError:
 item = dictionary.get("key", "")
 ```
 
-    
+#### Masking Potential Bugs w/ Too Broad Try/Except Clauses
+```python
+try:
+    return do_something(my_dict[key])
+except KeyError:
+    return ""
+
+
+# Better
+try:
+    value = my_dict[key]
+except KeyError:
+    value = ""
+else:
+    return value
+```
+
+#### Having Really Long Conditions in 1 Line:
+```python
+if super_long_comparsion1 and super_long_comparison2:
+    pass
+
+
+# Better
+cond1 = super_long_comparison1
+cond2 = super_long_comparison2
+if cond1 and cond2:
+    pass
+```
